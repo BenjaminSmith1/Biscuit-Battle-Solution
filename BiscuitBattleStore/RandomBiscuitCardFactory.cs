@@ -29,5 +29,17 @@ namespace BiscuitBattle.Store
                     return new BalancedBiscuit();
             }
         }
+        private Dictionary<BiscuitAttribute, int> RandomAttr() {
+            var ran = new Random();
+            var Stats = new Dictionary<BiscuitAttribute, int>
+            {
+                { BiscuitAttribute.DunkIntegrity, ran.Next(0,100) },
+                { BiscuitAttribute.Moistness, ran.Next(0,100) },
+                { BiscuitAttribute.Snap, ran.Next(0,100) },
+                { BiscuitAttribute.Sweetness, ran.Next(0,100) },
+                { BiscuitAttribute.Texture, ran.Next(0,100) }
+            };
+            return Stats;
+        }
     }
 }
