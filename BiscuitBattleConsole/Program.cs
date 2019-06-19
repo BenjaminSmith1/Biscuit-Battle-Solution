@@ -39,10 +39,29 @@ namespace BiscuitBattleConsole
             controller.PlayerTwoDeck = aiDeck;
 
             controller.PlayerOne = new Human();
-            controller.PlayerTwo = new BasicAI();
+            int choice = Menu();
+            switch (choice) {
+                case 1:
+                    controller.PlayerTwo = new EasyAI();
+                    break;
+                case 2:
+                    controller.PlayerTwo = new BasicAI();
+                    break;
+                case 3:
+                    controller.PlayerTwo = new CrazyAI();
+                    break;
+            }
 
             //3. Start the game
             controller.Begin();
+        }
+        //added this here so you can choose the ai level
+        static int Menu() {
+            Console.WriteLine("Choose your AI Opponent");
+            Console.WriteLine("Easy(1), Hard(2) or Crazy(3)?");
+            Char choice = Console.ReadKey().KeyChar;
+            int i = int.Parse(choice.ToString());
+            return i;
         }
     }
 }

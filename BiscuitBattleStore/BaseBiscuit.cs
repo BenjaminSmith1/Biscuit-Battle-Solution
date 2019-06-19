@@ -6,6 +6,7 @@ using BiscuitBattle.Store.Decks;
 
 namespace BiscuitBattle.Store
 {
+    //base biscuit class for the random generation of cards
     public class GenericBiscuit : IBiscuitCard
     {
         public string Name { get; set; }
