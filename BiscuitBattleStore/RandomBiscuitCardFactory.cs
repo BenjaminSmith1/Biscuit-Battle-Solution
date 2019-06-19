@@ -9,25 +9,9 @@ namespace BiscuitBattle.Store
     {
         public override IBiscuitCard GetCard()
         {
-            var ran = new Random();
-            var choose = ran.Next(1, 7);
-            switch (choose)
-            {
-                case 1:
-                    return new NiceBiscuit();
-                case 2:
-                    return new DigestiveBiscuit();
-                case 3:
-                    return new PinkWaferBiscuit();
-                case 4:
-                    return new BalancedBiscuit();
-                case 5:
-                    return new GingernutBiscuit();
-                case 6:
-                    return new CustardCream();
-                default:
-                    return new BalancedBiscuit();
-            }
+            Dictionary<BiscuitAttribute, int> stats =RandomAttr();
+            String name = RandomName(stats);
+            return new GenericBiscuit(stats, name);
         }
         private Dictionary<BiscuitAttribute, int> RandomAttr() {
             var ran = new Random();
@@ -40,6 +24,34 @@ namespace BiscuitBattle.Store
                 { BiscuitAttribute.Texture, ran.Next(0,100) }
             };
             return Stats;
+        }
+        private String RandomName(Dictionary<BiscuitAttribute, int> values) {
+            string nme = "";
+            int count = 0;
+            foreach (KeyValuePair<BiscuitAttribute, int> item in values) {
+                if (item.Value > 60) {
+                    switch (count) {
+                        case 0:
+                            nme += "Unbreakable ";
+                            break;
+                        case 1:
+                            nme += "Moist ";
+                            break;
+                        case 2:
+                            nme += "Stiff ";
+                            break;
+                        case 3:
+                            nme += "Sweet ";
+                            break;
+                        case 4:
+                            nme += "Crisp ";
+                            break;
+                    }
+                }
+                count++;
+            }
+            nme += "Biscuit";
+            return nme;
         }
     }
 }
